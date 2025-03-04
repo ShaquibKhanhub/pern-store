@@ -24,7 +24,7 @@ app.use(morgan("dev")); // morgan is a middleware that logs HTTP requests
 app.use(async (req, res, next) => {
   try {
     const decision = await aj.protect(req, {
-      requested: 1, //specifies that each request consumes 1 token
+      requested: 1, // specifies that each request consumes 1 token
     });
 
     if (decision.isDenied()) {
@@ -37,9 +37,8 @@ app.use(async (req, res, next) => {
       }
       return;
     }
-    
-    // check for spoofed bots
 
+    // check for spoofed bots
     if (
       decision.results.some(
         (result) => result.reason.isBot() && result.reason.isSpoofed()
