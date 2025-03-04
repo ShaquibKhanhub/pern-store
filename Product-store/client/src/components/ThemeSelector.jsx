@@ -1,10 +1,10 @@
 import { PaletteIcon } from "lucide-react";
 import { THEMES } from "../constants";
-import { useThemeStore } from "../pages/useThemeStore";
+import { useThemeStore } from "../store/useThemeStore";
 
 const ThemeSelector = () => {
   const { theme, setTheme } = useThemeStore();
-console.log(theme);
+  console.log(theme);
   return (
     <div className="dropdown dropdown-end">
       <button tabIndex={0} className="btn btn-ghost btn-circle">
