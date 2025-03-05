@@ -1,6 +1,7 @@
 import React from "react";
 import { useProductStore } from "../store/useProductStore";
 import {
+  DessertIcon,
   DollarSignIcon,
   ImageIcon,
   Package2Icon,
@@ -90,6 +91,29 @@ const AddProductModal = () => {
                   value={formData.image}
                   onChange={(e) =>
                     setFormData({ ...formData, image: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            {/* PRODUCT DESCRIPTION */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-base font-medium">
+                  Description
+                </span>
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+                  <DessertIcon className="size-5" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="write some description"
+                  className="input input-bordered w-full pl-10 py-3 focus:input-primary transition-colors duration-200"
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData({ ...formData, description: e.target.value })
                   }
                 />
               </div>

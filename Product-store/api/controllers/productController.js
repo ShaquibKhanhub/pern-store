@@ -16,21 +16,19 @@ export const getProducts = async (req, res) => {
 };
 
 export const createProduct = async (req, res) => {
-  const { name, image, price } = req.body;
+  const { name, image, price, description } = req.body;
   if (!image || !price || !name) {
-    {
-      return res
-        .status(400)
-        .json({ success: false, message: "All fields are required" });
-    }
+    return res
+      .status(400)
+      .json({ success: false, message: "Name, image, and price are required" });
   }
 
   try {
     const newProduct = await sql`
-    INSERT INTO products (name,price,image)
-    VALUES (${name},${price},${image})
-    RETURNING *
-  `;
+      INSERT INTO products (name, price, image, description)
+      VALUES (${name}, ${price}, ${image}, ${description})
+      RETURNING *
+    `;
 
     res.status(201).json({ success: true, data: newProduct[0] });
   } catch (error) {
@@ -38,6 +36,7 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 export const getProduct = async (req, res) => {
   const { id } = req.params;
   try {
@@ -55,16 +54,19 @@ export const getProduct = async (req, res) => {
 };
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, image, price } = req.body;
+  const { name, image, price, description } = req.body;
 
   try {
     const updateProduct = await sql`
-    UPDATE products
-    SET name = ${name}, price = ${price}, image = ${image}
-    WHERE id = ${id}
-    RETURNING *
+      UPDATE products
+      SET 
+        name = ${name}, 
+        price = ${price}, 
+        image = ${image},
+        description = ${description}
+      WHERE id = ${id}
+      RETURNING *
     `;
-    //RETURNING * → Returns all columns (*) of the updated row.
 
     if (updateProduct.length === 0) {
       return res.status(404).json({
