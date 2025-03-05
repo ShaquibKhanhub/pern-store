@@ -18,6 +18,7 @@ app.use(
   cors({
     origin:
       "https://designs-store-9lq3xks8c-shaquibkhanhubs-projects.vercel.app",
+    credentials: true,
   })
 ); // cors is a middleware that allows you to enable CORS with various options
 app.use(helmet()); // helmet is a security middleware that helps you protect your app by setting various HTTP headers
