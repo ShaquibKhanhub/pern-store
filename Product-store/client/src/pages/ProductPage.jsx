@@ -130,7 +130,7 @@ function ProductPage() {
               </div>
 
               {/* FORM ACTIONS */}
-              <div className="flex justify-between mt-8">
+              <div className="flex justify-center gap-4 mt-8">
                 <button
                   type="button"
                   onClick={handleDelete}

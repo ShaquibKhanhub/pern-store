@@ -3,11 +3,11 @@ import { sql } from "../config/db.js";
 export const getProducts = async (req, res) => {
   try {
     const products = await sql`
-        SELECT * FROM products
+        SELECT id, name, price, image, description
+        FROM products
         ORDER BY created_at DESC
-      `;
+    `;
 
-    console.log("fetched products", products);
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.log("Error in getProducts function", error);
@@ -42,8 +42,11 @@ export const getProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await sql`
-SELECT * FROM products WHERE id = ${id}
+      SELECT id, name, price, image, description
+      FROM products
+      WHERE id = ${id}
     `;
+
     res.status(200).json({ success: true, data: product[0] });
   } catch (error) {
     console.log("Error in getProduct function", error);

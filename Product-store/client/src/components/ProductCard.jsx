@@ -18,7 +18,9 @@ function ProductCard({ product }) {
 
       <div className="card-body">
         {/* PRODUCT INFO */}
-        <h2 className="card-title text-lg font-semibold">{product.name}</h2>
+        <Link to={`/detail/${product.id}`}>
+          <h2 className="card-title text-lg font-semibold">{product.name}</h2>
+        </Link>
         <p className="text-2xl font-bold text-primary">
           ${Number(product.price).toFixed(2)}
         </p>
