@@ -16,8 +16,7 @@ app.use(express.json()); // express.json() is a middleware that parses incoming 
 
 app.use(
   cors({
-    origin:
-      "https://designs-store-9lq3xks8c-shaquibkhanhubs-projects.vercel.app",
+    origin: "https://designs-store.vercel.app",
     credentials: true,
   })
 ); // cors is a middleware that allows you to enable CORS with various options
